@@ -118,7 +118,7 @@ source venv/bin/activate
 
 ```powershell
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate.bat
 ```
 
 Install dependencies:
@@ -345,82 +345,6 @@ This prevents JCrypt from silently accepting altered ciphertext.
 
 ---
 
-# 📦 Encrypted Data Format
-
-A versioned encrypted format can be used so future versions of JCrypt can remain compatible.
-
-Example:
-
-```text
-JC1:<salt>:<nonce>:<ciphertext>:<tag>
-```
-
-Where:
-
-| Field        | Purpose               |
-| ------------ | --------------------- |
-| `JC1`        | JCrypt format/version |
-| `salt`       | KDF salt              |
-| `nonce`      | Encryption nonce      |
-| `ciphertext` | Encrypted data        |
-| `tag`        | Authentication data   |
-
-The exact encoding and format should be documented by the implementation.
-
----
-
-# 🧪 Testing
-
-Run the test suite with:
-
-```bash
-python -m pytest
-```
-
-Example tests should include:
-
-* Encryption/decryption round trip
-* Empty messages
-* Unicode messages
-* Long messages
-* Incorrect password
-* Modified ciphertext
-* Invalid input
-* Random salt generation
-* Random nonce generation
-
-Example:
-
-```text
-Original
-   ↓
-Encrypt
-   ↓
-Decrypt
-   ↓
-Original
-```
-
-Expected result:
-
-```text
-PASS
-```
-
----
-
-# 🔍 Security Considerations
-
-JCrypt follows several important security principles:
-
-### Never hard-code encryption keys
-
-❌ Do not do:
-
-```python
-KEY = "my-secret-key"
-```
-
 ### Never store plaintext passwords
 
 Passwords should only be used as input to the password-based KDF.
@@ -437,39 +361,6 @@ Use Python's cryptographically secure randomness facilities or the cryptographic
 
 JCrypt should use established cryptographic primitives instead of attempting to invent its own encryption algorithm.
 
----
-
-# 🖥️ Planned CLI
-
-The project may eventually support commands such as:
-
-```bash
-jcrypt encrypt
-```
-
-```bash
-jcrypt decrypt
-```
-
-```bash
-jcrypt encrypt --message "Hello World"
-```
-
-```bash
-jcrypt decrypt --data "<encrypted-data>"
-```
-
-File operations:
-
-```bash
-jcrypt encrypt-file secret.txt
-```
-
-```bash
-jcrypt decrypt-file secret.enc
-```
-
----
 
 # 🗺️ Roadmap
 
@@ -503,41 +394,6 @@ jcrypt decrypt-file secret.enc
 
 ---
 
-# 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-
-```bash
-git checkout -b feature/new-feature
-```
-
-3. Make your changes.
-4. Add tests.
-5. Run the test suite.
-
-```bash
-pytest
-```
-
-6. Commit your changes.
-
-```bash
-git commit -m "Add new encryption feature"
-```
-
-7. Push the branch.
-
-```bash
-git push origin feature/new-feature
-```
-
-8. Open a Pull Request.
-
----
-
 # 🐛 Reporting Security Issues
 
 If you discover a security vulnerability in JCrypt, please do not immediately publish exploit details in a public issue.
@@ -556,11 +412,11 @@ See [`LICENSE`](LICENSE) for details.
 
 # 👨‍💻 Author
 
-**Your Name**
+**K John Lincoln**
 
 Cybersecurity Enthusiast | Python Developer | Security Researcher
 
-GitHub: `https://github.com/YOUR_USERNAME`
+GitHub: `https://github.com/johnlincoln-pen`
 
 ---
 
